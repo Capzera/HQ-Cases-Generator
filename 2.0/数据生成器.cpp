@@ -8,7 +8,7 @@ void solve(int number) {
 	//STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 	//|---------------------------------------------|
 	for (int i = 0; i < 10; i++) {
-		int x = intRand(1, 50, 0.2);
+		char x = CharRand(1,1,1,0);
 		iprint(x);
 	}
 	//|---------------------------------------------|

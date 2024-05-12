@@ -1,5 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
+int abs1(int a)
+{
+	if(a<0)
+	{
+		return a*-1;
+	}
+	return a;
+}
 int main() {
     int a, b;
     cin >> a >> b;

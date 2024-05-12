@@ -10,6 +10,8 @@ void solve(int number) {
 	for (int i = 0; i < 10; i++) {
 		int x = intRand(1, 50, 0.1);
 		oprint(x);
+		char x = CharRand(1,1,1,0);
+		iprint(x);
 	}
 	//|---------------------------------------------|
 }

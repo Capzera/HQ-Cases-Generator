@@ -38,4 +38,13 @@ long long intRand(long long l, long long r, int minus = 0) {
 	}
 	return ans;
 }
+char CharRand(bool NumFlag=0,bool LowerCase=0,bool CapitalCase=0,bool Ascii=0)
+{
+	if(NumFlag==0||LowerCase==0||CapitalCase==0||Ascii==0)
+	{
+		exit(1);
+	}		
+	if()
+}
+
 # endif

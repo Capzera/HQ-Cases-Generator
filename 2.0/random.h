@@ -12,6 +12,7 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+
 static string InputFileSuffix = "in";
 static string OutputFileSuffix = "out";
 static string FileName = "";
@@ -46,25 +47,41 @@ void init(int l, int r, string fileName = "") {
 	srand(time(NULL));
 }
 
-long long mrand(long long l, long long r) {
+long long mrand(long long l, long long r) { // 生成[l, r]闭区间的数, l为正整数或0, r不超过10000。
+	if (l > r) return 0;
 	long long ans = (rand() % (r - l + 1)) + l;
+	return ans;
+}
+
+long long CapzeraRand(long long l, long long r) { // 生成[l, r]闭区间的数, l为正整数或0, r 不超过 long long。
+	if (l > r || !r) return 0;
+	r--;
+	string stringNumber = to_string(r);
+	int stringNumberLen = stringNumber.size(), minLen = to_string(l).size();
+	long long ans = 0;
+	int numberLen = mrand(minLen, stringNumberLen);
+	if (numberLen == stringNumberLen) {  // 生成数长度等于目标数长度
+		long long head = stringNumber[0] - '0';
+		ans += mrand(1, head);
+		r -= head * pow(10, --numberLen);
+		if (!r && ans == head) {
+			return 1ll * ans * pow(10, numberLen);
+		}
+	}
+	while (numberLen >= 0) {
+		int generate = pow(10, min(numberLen, 3));
+		long long number = mrand(1, generate - 1);
+		ans = ans * generate + number;
+		numberLen -= 3;
+	}
 	return ans;
 }
 
 long long intRand(long long l, long long r, double minusRatio = 0) {
 	if (l > r) return 0;
-	string maxRangeString = to_string(r);
-	int maxRangeStringSize = maxRangeString.size();
-	int generatorLength = rand() % maxRangeStringSize + 1;
-	long long result = LLONG_MIN;
-	while (result < l || result > r) {
-		if (generatorLength == 1) {
-			result = mrand(1, 9);
-		} else if (generatorLength == maxRangeStringSize) {
-			result = mrand(pow(10, generatorLength - 1), (maxRangeString[0] - '0') * pow(10, generatorLength - 1));
-		} else {
-			result = mrand(pow(10, generatorLength - 1), pow(10, generatorLength) - 1);
-		}
+	long long result = CapzeraRand(l, r);
+	while (result < l) {
+		result = CapzeraRand(l, r);
 	}
 	if (minusRatio) {
 		int minusGenerator1 = mrand(1, 100);

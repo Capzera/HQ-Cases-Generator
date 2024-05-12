@@ -8,6 +8,9 @@ int abs1(int a)
 	}
 	return a;
 }
+int sub(int &a, int &b) {
+	return a - b;
+}
 int mul(int &a, int &b) {
 	return a * b;
 }

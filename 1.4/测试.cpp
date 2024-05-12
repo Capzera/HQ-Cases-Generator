@@ -1,7 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-int sub(int &a, int &b) {
-	return a - b;
+int abs1(int a)
+{
+	if(a<0)
+	{
+		return a*-1;
+	}
+	return a;
 }
 int mul(int &a, int &b) {
 	return a * b;

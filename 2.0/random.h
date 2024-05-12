@@ -13,21 +13,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-static string FileName = "";
-static int caseNumber = 0;
+string FileName = "";
+int caseNumber = 0;
 
 template<typename T>
 void iprint(T &x, char y = ' ') {
-	string aaa = FileName + to_string(caseNumber) + ".in";
-	freopen(aaa.c_str(), "w", stdout);
+	string fileName = FileName + to_string(caseNumber) + ".in";
+	freopen(fileName.c_str(), "a", stdout);
 	cout << x << y;
-	fclose(stdin);
+	fclose(stdout);
 }
 
 template<typename T>
 void oprint(T &x, char y = ' ') {
-	string bbb = FileName + to_string(caseNumber) + ".out";
-	freopen(bbb.c_str(), "w", stdout);
+	string fileName = FileName + to_string(caseNumber) + ".out";
+	freopen(fileName.c_str(), "a", stdout);
 	cout << x << y;
 	fclose(stdout);
 }

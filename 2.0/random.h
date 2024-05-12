@@ -62,4 +62,31 @@ long long intRand(long long l, long long r, double minus = 0) {
 	}
 	return ans;
 }
+char CharRand(bool NumFlag=0,bool LowerCase=0,bool CapitalCase=0,bool Ascii=0)
+{
+	if(NumFlag==0||LowerCase==0||CapitalCase==0||Ascii==0)
+	{
+		exit(1);
+	}
+	vector<char>v;
+	if(Ascii==1)
+	{
+		return mrand(0,127);
+	}
+	if(NumFlag==1)
+	{
+		v.push_back(mrand(0,9)+'0');
+	}
+	if(LowerCase==1)
+	{
+		v.push_back(mrand(0,25)+'a');
+	}
+	if(CapitalCase==1)
+	{
+		v.push_back(mrand(0,25)+'A');
+	}
+	int n=mrand(0,v.size()-1);
+	return v[n];
+}
+
 # endif

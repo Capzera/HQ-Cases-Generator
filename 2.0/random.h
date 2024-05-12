@@ -76,9 +76,9 @@ long long intRand(long long l, long long r, double minusRatio = 0) {
 }
 char CharRand(bool NumFlag=0,bool LowerCase=0,bool CapitalCase=0,bool Ascii=0)
 {
-	if(NumFlag==0||LowerCase==0||CapitalCase==0||Ascii==0)
+	if(NumFlag==0&&LowerCase==0&&CapitalCase==0&&Ascii==0)
 	{
-		exit(1);
+		exit(-1);
 	}
 	vector<char>v;
 	if(Ascii==1)
@@ -100,5 +100,17 @@ char CharRand(bool NumFlag=0,bool LowerCase=0,bool CapitalCase=0,bool Ascii=0)
 	int n=mrand(0,v.size()-1);
 	return v[n];
 }
-
+string StringRand(size_t size=0,bool NumFlag=0,bool LowerCase=0,bool CapitalCase=0,bool Ascii=0)
+{
+	if(NumFlag==0&&LowerCase==0&&CapitalCase==0&&Ascii==0)
+	{
+		exit(-1);
+	}
+	string s;
+	for(size_t i=0;i<size;i++)
+	{
+		s.push_back(CharRand(NumFlag,LowerCase,CapitalCase,Ascii));
+	}
+	return s;
+}
 # endif

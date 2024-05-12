@@ -8,16 +8,18 @@ void solve(int number) {
 	//STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 	//|---------------------------------------------|
 	for (int i = 0; i < 10; i++) {
-		int x = intRand(1, 50, 0.2);
-		iprint(x);
+		int x = intRand(1, 50, 0.1);
+		oprint(x);
 	}
 	//|---------------------------------------------|
 }
 
 int main() {
+	OutputFileSuffix = "ans";
 	// STEP 3 : Modify the cases name
 	//|---------------------------------------------|
-	init("book");
+	init(minCaseNumber, maxCaseNumber, "fake");
+	
 	//|---------------------------------------------|
 	for (int i = minCaseNumber; i <= maxCaseNumber; i++) {
 		solve(i);

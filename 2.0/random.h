@@ -12,13 +12,14 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-
-string FileName = "";
-int caseNumber = 0;
+static string InputFileSuffix = "in";
+static string OutputFileSuffix = "out";
+static string FileName = "";
+static int caseNumber = 0;
 
 template<typename T>
 void iprint(T &x, char y = ' ') {
-	string fileName = FileName + to_string(caseNumber) + ".in";
+	string fileName = FileName + to_string(caseNumber) + "." + InputFileSuffix;
 	freopen(fileName.c_str(), "a", stdout);
 	cout << x << y;
 	fclose(stdout);
@@ -26,13 +27,21 @@ void iprint(T &x, char y = ' ') {
 
 template<typename T>
 void oprint(T &x, char y = ' ') {
-	string fileName = FileName + to_string(caseNumber) + ".out";
+	string fileName = FileName + to_string(caseNumber) + "." + OutputFileSuffix;
 	freopen(fileName.c_str(), "a", stdout);
 	cout << x << y;
 	fclose(stdout);
 }
 
-void init(string fileName = "") {
+void init(int l, int r, string fileName = "") {
+	for (int i = l; i <= r; i++) {
+		string curFileName = fileName + to_string(i) + "." + InputFileSuffix;
+		freopen(curFileName.c_str(), "w", stdout);
+		fclose(stdout);
+		curFileName = fileName + to_string(i) + "." + OutputFileSuffix;
+		freopen(curFileName.c_str(), "w", stdout);
+		fclose(stdout);
+	}
 	FileName = fileName;
 	srand(time(NULL));
 }
@@ -42,25 +51,28 @@ long long mrand(long long l, long long r) {
 	return ans;
 }
 
-long long intRand(long long l, long long r, double minus = 0) {
+long long intRand(long long l, long long r, double minusRatio = 0) {
 	if (l > r) return 0;
-	string xx = to_string(r);
-	int len = xx.size();
-	int ppp = rand() % len + 1;
-	long long ans = LLONG_MIN;
-	if (ans < l || ans > r) {
-		if (ppp == 1) {
-			ans = mrand(1, 9);
-		} else if (ppp == len) ans = mrand(pow(10, ppp - 1), (xx[0] - '0') * pow(10, ppp - 1));
-		else ans = mrand(pow(10, ppp - 1), pow(10, ppp) - 1);
-	}
-	if (minus) {
-		int minusGenerator1 = mrand(1, 100);
-		if (minusGenerator1 <= minus * 100) {
-			ans = -ans;
+	string maxRangeString = to_string(r);
+	int maxRangeStringSize = maxRangeString.size();
+	int generatorLength = rand() % maxRangeStringSize + 1;
+	long long result = LLONG_MIN;
+	while (result < l || result > r) {
+		if (generatorLength == 1) {
+			result = mrand(1, 9);
+		} else if (generatorLength == maxRangeStringSize) {
+			result = mrand(pow(10, generatorLength - 1), (maxRangeString[0] - '0') * pow(10, generatorLength - 1));
+		} else {
+			result = mrand(pow(10, generatorLength - 1), pow(10, generatorLength) - 1);
 		}
 	}
-	return ans;
+	if (minusRatio) {
+		int minusGenerator1 = mrand(1, 100);
+		if (minusGenerator1 <= minusRatio * 100) {
+			result = -result;
+		}
+	}
+	return result;
 }
 char CharRand(bool NumFlag=0,bool LowerCase=0,bool CapitalCase=0,bool Ascii=0)
 {

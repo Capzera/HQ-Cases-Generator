@@ -1,6 +1,5 @@
-1.3
 #include <bit/stdc++.h>
-1.4using namespace std;
+using namespace std;
 int main() {
     int a, b;
     cin >> a >> b;

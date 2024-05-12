@@ -4,7 +4,7 @@
  * Author     : @Capzera @2070super
  * E-mail     : 1786126188@qq.com / 1025404072@qq.com
  * Version    : V 2 . 0
- * This header file helps teachers quickly and accurately derive data for topic tests. 
+ * This header file helps teachers quickly and accurately derive data for topic tests.
  * Thank you for using it. If you have any questions or suggestions please refer to the documentation or contact us!
 *********************************************************************************************************************/
 #ifndef RANDOM_H
@@ -91,42 +91,33 @@ long long intRand(long long l, long long r, double minusRatio = 0) {
 	}
 	return result;
 }
-char CharRand(bool NumFlag=0,bool LowerCase=0,bool CapitalCase=0,bool Ascii=0)
-{
-	if(NumFlag==0&&LowerCase==0&&CapitalCase==0&&Ascii==0)
-	{
+char CharRand(bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool Ascii = 0) {
+	if (NumFlag == 0 && LowerCase == 0 && CapitalCase == 0 && Ascii == 0) {
 		exit(-1);
 	}
 	vector<char>v;
-	if(Ascii==1)
-	{
-		return mrand(0,127);
+	if (Ascii == 1) {
+		return mrand(0, 127);
 	}
-	if(NumFlag==1)
-	{
-		v.push_back(mrand(0,9)+'0');
+	if (NumFlag == 1) {
+		v.push_back(mrand(0, 9) + '0');
 	}
-	if(LowerCase==1)
-	{
-		v.push_back(mrand(0,25)+'a');
+	if (LowerCase == 1) {
+		v.push_back(mrand(0, 25) + 'a');
 	}
-	if(CapitalCase==1)
-	{
-		v.push_back(mrand(0,25)+'A');
+	if (CapitalCase == 1) {
+		v.push_back(mrand(0, 25) + 'A');
 	}
-	int n=mrand(0,v.size()-1);
+	int n = mrand(0, v.size() - 1);
 	return v[n];
 }
-string StringRand(size_t size=0,bool NumFlag=0,bool LowerCase=0,bool CapitalCase=0,bool Ascii=0)
-{
-	if(NumFlag==0&&LowerCase==0&&CapitalCase==0&&Ascii==0)
-	{
+string StringRand(size_t size = 0, bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool Ascii = 0) {
+	if (NumFlag == 0 && LowerCase == 0 && CapitalCase == 0 && Ascii == 0) {
 		exit(-1);
 	}
 	string s;
-	for(size_t i=0;i<size;i++)
-	{
-		s.push_back(CharRand(NumFlag,LowerCase,CapitalCase,Ascii));
+	for (size_t i = 0; i < size; i++) {
+		s.push_back(CharRand(NumFlag, LowerCase, CapitalCase, Ascii));
 	}
 	return s;
 }

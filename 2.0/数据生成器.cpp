@@ -7,8 +7,8 @@ void solve(int number) {
 	caseNumber = number;
 //STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 //|---------------------------------------------|
-	string x = stringRand(13, 0, 1, 0, 0);
-	iprint(x);
+	string s = stringRand(5, 0, 0, 0);
+	iprint(s);
 //|---------------------------------------------|
 }
 

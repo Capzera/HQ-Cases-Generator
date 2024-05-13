@@ -78,7 +78,11 @@ long long CapzeraRand(long long l, long long r) { // 生成[l, r]闭区间的数
 }
 
 long long intRand(long long l, long long r, double minusRatio = 0) {
-	if (l > r) return 0;
+	if (l > r) {
+		freopen ("CON", "w", stdout);
+		cout << "intRand() :: Illegal parameter, [Range conflict]. Program had Broken!" << endl;
+		exit(1);
+	}
 	long long result = CapzeraRand(l, r);
 	while (result < l) {
 		result = CapzeraRand(l, r);
@@ -94,8 +98,8 @@ long long intRand(long long l, long long r, double minusRatio = 0) {
 char charRand(bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool Ascii = 0) {
 	if (NumFlag == 0 && LowerCase == 0 && CapitalCase == 0 && Ascii == 0) {
 		freopen ("CON", "w", stdout);
-		cout << "Illegal parameter, program raised" << endl;
-		exit(-1);
+		cout << "charRand() :: Illegal parameter, [All parameter was 0]. Program had Broken!" << endl;
+		exit(2);
 	}
 	vector<char>v;
 	if (Ascii == 1) {
@@ -116,8 +120,8 @@ char charRand(bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool A
 string stringRand(size_t size = 0, bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool Ascii = 0) {
 	if (NumFlag == 0 && LowerCase == 0 && CapitalCase == 0 && Ascii == 0) {
 		freopen ("CON", "w", stdout);
-		cout << "Illegal parameter, program raised" << endl;
-		exit(-1);
+		cout << "stringRand() :: Illegal parameter, [All parameter was 0]. Program had Broken!" << endl;
+		exit(3);
 	}
 	string s;
 	for (size_t i = 0; i < size; i++) {
@@ -129,8 +133,8 @@ string highIntRand(string Left, string Right) {
 	string s;
 	if (Left.size() > Right.size() || (Left.size() == Right.size() && Left > Right)) {
 		freopen ("CON", "w", stdout);
-		cout << "Illegal parameter, program raised" << endl;
-		exit(-1);
+		cout << "highIntRand() :: Illegal parameter, [Range conflict]. Program had Broken!" << endl;
+		exit(4);
 	}
 	string s2;
 	for (size_t i = 0; i < Right.size() - Left.size(); i++) {

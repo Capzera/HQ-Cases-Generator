@@ -36,7 +36,7 @@ long long intRand(long long l, long long r, double minusRatio = 0);
 
 #### 函数目的
 
-生成一个**[l, r]**范围内的不超过**long long**的整数，且允许设置有一定概率生成**负数**。
+生成一个 **[l, r]** 范围内的不超过 **long long** 的整数，且允许设置有一定概率生成 **负数** 。
 
 
 

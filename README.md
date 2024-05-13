@@ -258,7 +258,7 @@ string stringRand(size_t size = 0, bool NumFlag = 0, bool LowerCase = 0, bool Ca
 
 #### 函数目的
 
-生成一个**定长字符串**，该函数继承于**charRand**函数。
+生成一个 **定长字符串** ，该函数继承于 **charRand** 函数。
 
 
 
@@ -292,7 +292,7 @@ string highIntRand(int l, int r);
 
 #### 函数目的
 
-生成一个长度无限的整数，该函数继承于**charRand()**函数。
+生成一个长度无限的整数，该函数继承于 **charRand()** 函数。
 
 
 

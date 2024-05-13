@@ -168,7 +168,6 @@ string highIntRand(string Left, string Right) {
 		answer.push_back(mrand(anum, bnum) + '0');
 	}
 	size_t a = 0;
-	// bug
 	while (answer[a] == '0') {
 		a++;
 	}

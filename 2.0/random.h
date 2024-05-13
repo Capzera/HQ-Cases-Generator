@@ -129,6 +129,26 @@ string stringRand(size_t size = 0, bool NumFlag = 0, bool LowerCase = 0, bool Ca
 	}
 	return s;
 }
+string highIntRand(int Left, int Right) {
+	if (Left>Right) {
+		freopen ("CON", "w", stdout);
+		cout << "highIntRand() :: Illegal parameter, [Range conflict]. Program had Broken!" << endl;
+		exit(4);
+	}
+	int b=mrand(Left,Right); 
+	string answer;
+	for (int i = 0; i < b; i++) {
+		if(i==0)
+		{
+			answer.push_back(mrand(1,9)+'0');
+		}
+		else
+		{
+			answer.push_back(mrand(0,9) + '0');
+		}
+	}
+	return answer;
+}
 string highIntRand(string Left, string Right) {
 	string s;
 	if (Left.size() > Right.size() || (Left.size() == Right.size() && Left > Right)) {
@@ -145,10 +165,10 @@ string highIntRand(string Left, string Right) {
 	for (size_t i = 0; i < Left.size(); i++) {
 		int anum = Left[i] - '0';
 		int bnum = Right[i] - '0';
+		if(anum>bnum)swap(anum,bnum);
 		answer.push_back(mrand(anum, bnum) + '0');
 	}
 	size_t a = 0;
-	// bug
 	while (answer[a] == '0') {
 		a++;
 	}

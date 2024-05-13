@@ -145,6 +145,7 @@ string highIntRand(string Left, string Right) {
 	for (size_t i = 0; i < Left.size(); i++) {
 		int anum = Left[i] - '0';
 		int bnum = Right[i] - '0';
+		if(anum>bnum)swap(anum,bnum);
 		answer.push_back(mrand(anum, bnum) + '0');
 	}
 	size_t a = 0;

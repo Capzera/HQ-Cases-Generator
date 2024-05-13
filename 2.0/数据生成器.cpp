@@ -7,11 +7,10 @@ void solve(int number) {
 	caseNumber = number;
 //STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 //|---------------------------------------------|
-	string s = stringRand(5, 0, 0, 0);
+	string s = highIntRand("12345678","87654321");
 	iprint(s);
 //|---------------------------------------------|
 }
-
 int main() {
 // STEP 3 : Modify the cases name
 //|---------------------------------------------|

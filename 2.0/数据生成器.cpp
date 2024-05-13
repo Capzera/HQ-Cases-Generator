@@ -1,25 +1,24 @@
 #include "random.h"
 // STEP 2 : Modify the cases number
 //|---------------------------------------------|
-int minCaseNumber = 1, maxCaseNumber = 1; //Test Cases Number
+	int minCaseNumber = 1, maxCaseNumber = 1; //Test Cases Number
 //|---------------------------------------------|
 void solve(int number) {
 	caseNumber = number;
-	//STEP 1 : std Code copy here and replace "cin" and "cout" with generator
-	//|---------------------------------------------|
-		string x = HighIntRand("00000099999999", "12345678901235456789");
-		iprint(x);
-	//|---------------------------------------------|
+//STEP 1 : std Code copy here and replace "cin" and "cout" with generator
+//|---------------------------------------------|
+	string x = stringRand(13, 0, 1, 0, 0);
+	iprint(x);
+//|---------------------------------------------|
 }
 
 int main() {
- 	InputFileSuffix = "in";
-	OutputFileSuffix = "out";
-	// STEP 3 : Modify the cases name
-	//|---------------------------------------------|
+// STEP 3 : Modify the cases name
+//|---------------------------------------------|
 	init(minCaseNumber, maxCaseNumber, "TEST");
-	
-	//|---------------------------------------------|
+	InputFileSuffix = "in";
+	OutputFileSuffix = "out";
+//|---------------------------------------------|
 	for (int i = minCaseNumber; i <= maxCaseNumber; i++) {
 		solve(i);
 	}

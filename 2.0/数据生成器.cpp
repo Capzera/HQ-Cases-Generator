@@ -7,15 +7,13 @@ void solve(int number) {
 	caseNumber = number;
 	//STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 	//|---------------------------------------------|
-	for (int i = 0; i < 10; i++) {
-		int x = intRand(400, 5000);
-		oprint(x);
-	}
+		string x = HighIntRand("00000099999999", "12345678901235456789");
+		iprint(x);
 	//|---------------------------------------------|
 }
 
 int main() {
-	InputFileSuffix = "in";
+ 	InputFileSuffix = "in";
 	OutputFileSuffix = "out";
 	// STEP 3 : Modify the cases name
 	//|---------------------------------------------|

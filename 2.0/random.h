@@ -93,6 +93,8 @@ long long intRand(long long l, long long r, double minusRatio = 0) {
 }
 char CharRand(bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool Ascii = 0) {
 	if (NumFlag == 0 && LowerCase == 0 && CapitalCase == 0 && Ascii == 0) {
+		freopen ("CON", "w",stdout);
+		cout<<"Illegal parameter, program raised"<<endl;
 		exit(-1);
 	}
 	vector<char>v;
@@ -113,6 +115,8 @@ char CharRand(bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool A
 }
 string StringRand(size_t size = 0, bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool Ascii = 0) {
 	if (NumFlag == 0 && LowerCase == 0 && CapitalCase == 0 && Ascii == 0) {
+		freopen ("CON", "w",stdout);
+		cout<<"Illegal parameter, program raised"<<endl;
 		exit(-1);
 	}
 	string s;
@@ -120,5 +124,34 @@ string StringRand(size_t size = 0, bool NumFlag = 0, bool LowerCase = 0, bool Ca
 		s.push_back(CharRand(NumFlag, LowerCase, CapitalCase, Ascii));
 	}
 	return s;
+}
+string HighIntRand(string Left,string Right){
+	string s;
+	if(Left.size()>Right.size()||(Left.size()==Right.size()&&Left>Right))
+	{
+		freopen ("CON", "w",stdout);
+		cout<<"Illegal parameter, program raised"<<endl;
+		exit(-1);
+	}
+	string s2;
+	for(size_t i=0;i<Right.size()-Left.size();i++)
+	{
+		s2.push_back('0');
+	}
+	Left=s2+Left;
+	string answer;
+	for(size_t i=0;i<Left.size();i++)
+	{
+		int anum=Left[i]-'0';
+		int bnum=Right[i]-'0';
+		answer.push_back(mrand(anum,bnum)+'0');
+	}
+	size_t a=0;
+	while(answer[a]=='0')
+	{
+		a++;
+	}
+	answer.erase(0,a);
+	return answer;
 }
 # endif

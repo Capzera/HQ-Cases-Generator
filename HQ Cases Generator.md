@@ -42,7 +42,7 @@ long long intRand(long long l, long long r, double minusRatio = 0);
 
 #### 使用方法
 
-传入**2-3**个参数。其中：
+传入 **2-3** 个参数。其中：
 
 **l**是生成数据的左端点。
 
@@ -50,7 +50,7 @@ long long intRand(long long l, long long r, double minusRatio = 0);
 
 **minusRatio**是一个**0-1**的小数，表示接受多大的概率生成负数。
 
-例如：**minusRatio = 0.5**，则表示生成数据中的负数出现频率近似为**50%**。
+例如：**minusRatio = 0.5** ，则表示生成数据中的负数出现频率近似为 **50%** 。
 
 该函数在范围内等概率的生成一个整数。
 
@@ -76,7 +76,7 @@ char charRand(bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool A
 
 #### 使用方法
 
-传入$0-4$个参数，其中：
+传入 $0-4$ 个参数，其中：
 
 第**1**个参数**NumFlag**表示是否需要生成数字，**1**是，**0**是否，下同。
 
@@ -110,7 +110,7 @@ string stringRand(size_t size = 0, bool NumFlag = 0, bool LowerCase = 0, bool Ca
 
 #### 使用方法
 
-传入$1-5$个参数，其中：
+传入 $1-5$ 个参数，其中：
 
 第**1**个参数**size**表示生成字符串的长度。
 
@@ -144,11 +144,11 @@ string highIntRand(int l, int r);
 
 #### 使用方法
 
-传入**2**个参数，其中：
+传入 **2** 个参数，其中：
 
 第**1**个参数**l**表示生成的高精度数最少多少位。
 
 第**2**个参数**r**表示生成的高精度数最大多少位。
 
-该函数在范围内等概率生成一个长度为**x**，$x ∈ [l, r]$的高精度整数。
+该函数在范围内等概率生成一个长度为 **x** ， $x ∈ [l, r]$ 的高精度整数。
 

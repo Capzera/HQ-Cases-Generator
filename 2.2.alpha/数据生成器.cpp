@@ -6,14 +6,13 @@
 void solve() {
 //STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 //|---------------------------------------------|
-	double mx = INT_MIN;
 	int n = intRand(10, 20);
-	
+	vector<int> v;
 	for (int i = 1; i <= n; i++) {
-		double x = doubleRand(4, 2);
-		iprint(x);
+		int c=intRand(1,20);
+		v.push_back(c);
 	}
-	oprint(mx);
+	iprint(v);
 //|---------------------------------------------|
 	filePrint();
 }

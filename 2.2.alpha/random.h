@@ -19,6 +19,41 @@ static string FileName = "";
 static string InputStream = "";
 static string OutputStream = "";
 static int caseNumber = 0;
+template<typename T>
+void iprint(vector<T> &x,char y=' '){
+	bool flag=is_same<T,char>::value;
+	size_t n=x.size();
+	for(size_t i=0;i<n;i++){
+		if(flag==0){
+			InputStream+=to_string(x[i]);
+		}
+		else{
+			InputStream.push_back(x[i]);
+		}
+		InputStream.push_back(y);
+	}
+}
+
+template<typename T>
+void iprint(T* a, T* b,char y=' '){
+	bool flag=0;
+	string s=typeid(a).name();
+	if(s=="Pc")
+	{
+		flag=1;
+	}
+	auto it = a;
+	while (it != b){
+		if(flag==0){
+			InputStream+=to_string(*it);
+		}
+		else{
+			InputStream.push_back(*it);
+		}
+			it++;
+			InputStream.push_back(y);
+	}
+}
 
 template<typename T>
 void iprint(T &x, char y = ' ') {
@@ -30,6 +65,42 @@ template<typename T>
 void oprint(T &x, char y = ' ') {
 	OutputStream += to_string(x);
 	OutputStream += y;
+}
+
+template<typename T>
+void oprint(vector<T> &x,char y=' '){
+	bool flag=is_same<T,char>::value;
+	size_t n=x.size();
+	for(size_t i=0;i<n;i++){
+		if(flag==0){
+			OutputStream+=to_string(x[i]);
+		}
+		else{
+			OutputStream.push_back(x[i]);
+		}
+		OutputStream.push_back(y);
+	}
+}
+
+template<typename T>
+void oprint(T* a, T* b,char y=' '){
+	bool flag=0;
+	string s=typeid(a).name();
+	if(s=="Pc")
+	{
+		flag=1;
+	}
+	auto it = a;
+	while (it != b){
+		if(flag==0){
+			OutputStream+=to_string(*it);
+		}
+		else{
+			OutputStream.push_back(*it);
+		}
+		it++;
+		OutputStream.push_back(y);
+	}
 }
 
 void filePrint() {

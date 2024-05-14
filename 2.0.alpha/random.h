@@ -20,18 +20,16 @@ static int caseNumber = 0;
 
 template<typename T>
 void iprint(T &x, char y = ' ') {
-	string fileName = FileName + to_string(caseNumber) + "." + InputFileSuffix;
-	freopen(fileName.c_str(), "a", stdout);
+	
 	cout << x << y;
-	fclose(stdout);
+//	fclose(stdout);
 }
 
 template<typename T>
 void oprint(T &x, char y = ' ') {
-	string fileName = FileName + to_string(caseNumber) + "." + OutputFileSuffix;
-	freopen(fileName.c_str(), "a", stdout);
+	
 	cout << x << y;
-	fclose(stdout);
+	//fclose(stdout);
 }
 
 void init(int l, int r, string fileName = "") {

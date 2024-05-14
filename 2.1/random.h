@@ -3,7 +3,7 @@
  * Created By : Sunday 2024-05-12 23:46
  * Author     : @Capzera @2070super
  * E-mail     : 1786126188@qq.com / 1025404072@qq.com
- * Version    : V 2 . 0
+ * Version    : V 2 . 1
  * This header file helps teachers quickly and accurately derive data for topic tests.
  * Thank you for using it. If you have any questions or suggestions please refer to the documentation or contact us!
 *********************************************************************************************************************/
@@ -16,33 +16,35 @@ using namespace std;
 static string InputFileSuffix = "in";
 static string OutputFileSuffix = "out";
 static string FileName = "";
+static string InputStream = "";
+static string OutputStream = "";
 static int caseNumber = 0;
 
 template<typename T>
 void iprint(T &x, char y = ' ') {
-	string fileName = FileName + to_string(caseNumber) + "." + InputFileSuffix;
-	freopen(fileName.c_str(), "a", stdout);
-	cout << x << y;
-	fclose(stdout);
+	InputStream += to_string(x);
+	InputStream += y;
 }
 
 template<typename T>
 void oprint(T &x, char y = ' ') {
-	string fileName = FileName + to_string(caseNumber) + "." + OutputFileSuffix;
-	freopen(fileName.c_str(), "a", stdout);
-	cout << x << y;
+	OutputStream += to_string(x);
+	OutputStream += y;
+}
+
+void filePrint() {
+	string InputFileName = FileName + to_string(caseNumber) + "." + InputFileSuffix;
+	freopen(InputFileName.c_str(), "w", stdout);
+	cout << InputStream;
 	fclose(stdout);
+	string OutputFileName = FileName + to_string(caseNumber) + "." + OutputFileSuffix;
+	freopen(OutputFileName.c_str(), "w", stdout);
+	cout << OutputStream;
+	fclose(stdout);
+	InputStream = OutputStream = "";
 }
 
 void init(int l, int r, string fileName = "") {
-	for (int i = l; i <= r; i++) {
-		string curFileName = fileName + to_string(i) + "." + InputFileSuffix;
-		freopen(curFileName.c_str(), "w", stdout);
-		fclose(stdout);
-		curFileName = fileName + to_string(i) + "." + OutputFileSuffix;
-		freopen(curFileName.c_str(), "w", stdout);
-		fclose(stdout);
-	}
 	FileName = fileName;
 	srand(time(NULL));
 }

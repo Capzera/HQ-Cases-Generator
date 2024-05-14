@@ -5,10 +5,19 @@
 //|---------------------------------------------|
 void solve(int number) {
 	caseNumber = number;
+	string fileName = FileName + to_string(caseNumber) + "." + InputFileSuffix;
+	freopen(fileName.c_str(), "w", stdout);
 //STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 //|---------------------------------------------|
-	string s = highIntRand("12345678","87654321");
-	iprint(s);
+	int mx = INT_MIN;
+	for (int i = 1; i <= 100000; i++) {
+		int x = intRand(1, 1e6);
+		iprint(x);
+		mx = max(mx, x);
+	}
+	fileName = FileName + to_string(caseNumber) + "." + OutputFileSuffix;
+	freopen(fileName.c_str(), "w", stdout);
+	cout << mx;
 //|---------------------------------------------|
 }
 int main() {

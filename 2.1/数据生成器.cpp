@@ -3,13 +3,17 @@
 //|---------------------------------------------|
 	int minCaseNumber = 1, maxCaseNumber = 1; //Test Cases Number
 //|---------------------------------------------|
-void solve(int number) {
-	caseNumber = number;
+void solve() {
 //STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 //|---------------------------------------------|
-	string s = highIntRand("12345678","87654321");
-	iprint(s);
+	int mx = INT_MIN;
+	for (int i = 1; i <= 1000000; i++) {
+		int x = intRand(1, 1e6);
+		iprint(x);
+	}
+	oprint(mx);
 //|---------------------------------------------|
+	filePrint();
 }
 int main() {
 // STEP 3 : Modify the cases name
@@ -19,7 +23,8 @@ int main() {
 	OutputFileSuffix = "out";
 //|---------------------------------------------|
 	for (int i = minCaseNumber; i <= maxCaseNumber; i++) {
-		solve(i);
+		caseNumber = i;
+		solve();
 	}
 	return 0; 
 } 

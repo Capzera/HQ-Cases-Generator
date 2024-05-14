@@ -60,6 +60,17 @@ inline long long mrand(long long l, long long r) { // 生成[l, r]闭区间的�
 	return ans;
 }
 
+template<typename T>
+T minusGenerate(T x, double minusRatio = 0) {
+	if (minusRatio) {
+		int minusGenerator1 = mrand(1, 100);
+		if (minusGenerator1 <= minusRatio * 100) {
+			x = -x;
+		}
+	}
+	return x;
+}
+
 long long CapzeraRand(long long l, long long r) { // 生成[l, r]闭区间的数, l为正整数或0, r 不超过 long long。
 	if (l > r || !r) return 0;
 	r--;
@@ -88,26 +99,32 @@ long long intRand(long long l, long long r, double minusRatio = 0) {
 	if (l > r) {
 		freopen ("CON", "w", stdout);
 		cout << "intRand() :: Illegal parameter, [Range conflict]. Program had Broken!" << endl;
-		exit(1);
+		exit(2);
+	}
+	if (minusRatio > 1 || minusRatio < 0) {
+		freopen ("CON", "w", stdout);
+		cout << "intRand() :: Illegal parameter, [minusRatio Out of Range, Range must belongs [0 - 1]]. Program had Broken!" << endl;
+		exit(3);
 	}
 	long long result = CapzeraRand(l, r);
 	while (result < l) {
 		result = CapzeraRand(l, r);
 	}
-	if (minusRatio) {
-		int minusGenerator1 = mrand(1, 100);
-		if (minusGenerator1 <= minusRatio * 100) {
-			result = -result;
-		}
-	}
-	return result;
+	return minusGenerate(result);
+}
+
+long long mulIntRand(long long _l, long long _r, long long _division, double _minusRatio = 0) {
+	long long realL = _l / _division;
+	long long realR = _r / _division;
+	long long result = intRand(realL, realR, _minusRatio);
+	return 1ll * result * _division;
 }
 
 char charRand(bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool Ascii = 0) {
 	if (NumFlag == 0 && LowerCase == 0 && CapitalCase == 0 && Ascii == 0) {
 		freopen ("CON", "w", stdout);
 		cout << "charRand() :: Illegal parameter, [All parameter was 0]. Program had Broken!" << endl;
-		exit(2);
+		exit(1);
 	}
 	vector<char>v;
 	if (Ascii == 1) {
@@ -130,7 +147,7 @@ string stringRand(size_t size = 0, bool NumFlag = 0, bool LowerCase = 0, bool Ca
 	if (NumFlag == 0 && LowerCase == 0 && CapitalCase == 0 && Ascii == 0) {
 		freopen ("CON", "w", stdout);
 		cout << "stringRand() :: Illegal parameter, [All parameter was 0]. Program had Broken!" << endl;
-		exit(3);
+		exit(1);
 	}
 	string s;
 	for (size_t i = 0; i < size; i++) {
@@ -143,7 +160,7 @@ string highIntRand(int Left, int Right) {
 	if (Left > Right) {
 		freopen ("CON", "w", stdout);
 		cout << "highIntRand() :: Illegal parameter, [Range conflict]. Program had Broken!" << endl;
-		exit(4);
+		exit(2);
 	}
 	int b = mrand(Left, Right);
 	string answer;
@@ -162,7 +179,7 @@ string highIntRand(string Left, string Right) {
 	if (Left.size() > Right.size() || (Left.size() == Right.size() && Left > Right)) {
 		freopen ("CON", "w", stdout);
 		cout << "highIntRand() :: Illegal parameter, [Range conflict]. Program had Broken!" << endl;
-		exit(4);
+		exit(2);
 	}
 	string s2;
 	for (size_t i = 0; i < Right.size() - Left.size(); i++) {
@@ -176,7 +193,6 @@ string highIntRand(string Left, string Right) {
 		answer.push_back(mrand(anum, bnum) + '0');
 	}
 	size_t a = 0;
-	// bug
 	while (answer[a] == '0') {
 		a++;
 	}
@@ -184,10 +200,15 @@ string highIntRand(string Left, string Right) {
 	return answer;
 }
 
-double doubleRand(int intParticialLen, int doubleParticialLen) {
+double doubleRand(int intParticialLen, int doubleParticialLen, double minusRatio = 0) {
+	if (minusRatio > 1 || minusRatio < 0) {
+		freopen ("CON", "w", stdout);
+		cout << "doubleRand() :: Illegal parameter, [minusRatio Out of Range, Range must belongs [0 - 1]]. Program had Broken!" << endl;
+		exit(3);
+	}
 	long long _SumLen = intParticialLen + doubleParticialLen;
 	long long GeneRatorDoubleNumber = intRand(pow(10, _SumLen - 1), pow(10, _SumLen) - 1);
 	double ans = 1.0 * GeneRatorDoubleNumber / pow(10, doubleParticialLen);
-	return ans;
+	return minusGenerate(ans, minusRatio);
 }
 # endif

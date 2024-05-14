@@ -10,7 +10,7 @@ void solve() {
 	int n = intRand(10, 20);
 	
 	for (int i = 1; i <= n; i++) {
-		double x = doubleRand(4, 2);
+		double x = doubleRand(4, 2, 0.3);
 		iprint(x);
 	}
 	oprint(mx);

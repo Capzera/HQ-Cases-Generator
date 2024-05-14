@@ -49,8 +49,14 @@ void init(int l, int r, string fileName = "") {
 	srand(time(NULL));
 }
 
-long long mrand(long long l, long long r) { // 生成[l, r]闭区间的数, l为正整数或0, r不超过10000。
-	if (l > r) return 0;
+
+inline long long mrand(long long l, long long r) { // 生成[l, r]闭区间的数, l为正整数或0, r不超过10000。
+	if (l > r) {
+		freopen ("CON", "w", stdout);
+		cout << "mrand() :: Illegal parameter, [Range conflict]. Program had Broken!" << endl;
+		exit(100);
+		return 0;
+	}
 	long long ans = (rand() % (r - l + 1)) + l;
 	return ans;
 }

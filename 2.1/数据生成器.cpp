@@ -7,7 +7,9 @@ void solve() {
 //STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 //|---------------------------------------------|
 	int mx = INT_MIN;
-	for (int i = 1; i <= 1000000; i++) {
+	int n = intRand(8e5, 1e6);
+	
+	for (int i = 1; i <= n; i++) {
 		int x = intRand(1, 1e6);
 		iprint(x);
 	}

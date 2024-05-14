@@ -6,11 +6,11 @@
 void solve() {
 //STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 //|---------------------------------------------|
-	int mx = INT_MIN;
-	int n = intRand(8e5, 1e6);
+	double mx = INT_MIN;
+	int n = intRand(10, 20);
 	
 	for (int i = 1; i <= n; i++) {
-		int x = intRand(1, 1e6);
+		double x = doubleRand(4, 2);
 		iprint(x);
 	}
 	oprint(mx);

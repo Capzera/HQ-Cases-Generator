@@ -49,7 +49,6 @@ void init(int l, int r, string fileName = "") {
 	srand(time(NULL));
 }
 
-
 inline long long mrand(long long l, long long r) { // 生成[l, r]闭区间的数, l为正整数或0, r不超过10000。
 	if (l > r) {
 		freopen ("CON", "w", stdout);
@@ -103,6 +102,7 @@ long long intRand(long long l, long long r, double minusRatio = 0) {
 	}
 	return result;
 }
+
 char charRand(bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool Ascii = 0) {
 	if (NumFlag == 0 && LowerCase == 0 && CapitalCase == 0 && Ascii == 0) {
 		freopen ("CON", "w", stdout);
@@ -125,6 +125,7 @@ char charRand(bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool A
 	int n = mrand(0, v.size() - 1);
 	return v[n];
 }
+
 string stringRand(size_t size = 0, bool NumFlag = 0, bool LowerCase = 0, bool CapitalCase = 0, bool Ascii = 0) {
 	if (NumFlag == 0 && LowerCase == 0 && CapitalCase == 0 && Ascii == 0) {
 		freopen ("CON", "w", stdout);
@@ -137,26 +138,25 @@ string stringRand(size_t size = 0, bool NumFlag = 0, bool LowerCase = 0, bool Ca
 	}
 	return s;
 }
+
 string highIntRand(int Left, int Right) {
-	if (Left>Right) {
+	if (Left > Right) {
 		freopen ("CON", "w", stdout);
 		cout << "highIntRand() :: Illegal parameter, [Range conflict]. Program had Broken!" << endl;
 		exit(4);
 	}
-	int b=mrand(Left,Right); 
+	int b = mrand(Left, Right);
 	string answer;
 	for (int i = 0; i < b; i++) {
-		if(i==0)
-		{
-			answer.push_back(mrand(1,9)+'0');
-		}
-		else
-		{
-			answer.push_back(mrand(0,9) + '0');
+		if (i == 0) {
+			answer.push_back(mrand(1, 9) + '0');
+		} else {
+			answer.push_back(mrand(0, 9) + '0');
 		}
 	}
 	return answer;
 }
+
 string highIntRand(string Left, string Right) {
 	string s;
 	if (Left.size() > Right.size() || (Left.size() == Right.size() && Left > Right)) {
@@ -182,5 +182,12 @@ string highIntRand(string Left, string Right) {
 	}
 	answer.erase(0, a);
 	return answer;
+}
+
+double doubleRand(int intParticialLen, int doubleParticialLen) {
+	long long _SumLen = intParticialLen + doubleParticialLen;
+	long long GeneRatorDoubleNumber = intRand(pow(10, _SumLen - 1), pow(10, _SumLen) - 1);
+	double ans = 1.0 * GeneRatorDoubleNumber / pow(10, doubleParticialLen);
+	return ans;
 }
 # endif

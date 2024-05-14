@@ -36,6 +36,16 @@ void iprint(vector<T> &x,char y=' '){
 
 template<typename T>
 void iprint(T* a, T* b,char y=' '){
+	if(a==nullptr||b==nullptr){
+		freopen ("CON", "w", stdout);
+		cout << "iprint :: Wrong address, [Incoming empty address]. Program had Broken!" << endl;
+		exit(4);
+	}
+	if(a>b){
+		freopen ("CON", "w", stdout);
+		cout << "iprint :: Wrong address, [Incorrect address range]. Program had Broken!" << endl;
+		exit(4);
+	}
 	bool flag=0;
 	string s=typeid(a).name();
 	if(s=="Pc")
@@ -84,6 +94,16 @@ void oprint(vector<T> &x,char y=' '){
 
 template<typename T>
 void oprint(T* a, T* b,char y=' '){
+	if(a==nullptr||b==nullptr){
+		freopen ("CON", "w", stdout);
+		cout << "oprint :: Wrong address, [Incoming empty address]. Program had Broken!" << endl;
+		exit(4);
+	}
+	if(a>b){
+		freopen ("CON", "w", stdout);
+		cout << "oprint :: Wrong address, [Incorrect address range]. Program had Broken!" << endl;
+		exit(4);
+	}
 	bool flag=0;
 	string s=typeid(a).name();
 	if(s=="Pc")

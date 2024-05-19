@@ -33,13 +33,13 @@ string to_str(char x) {
 }
 template<typename T>
 string to_str(T &x) {
-	return to_str(x);
+	return to_string(x);
 }
 
 template<typename T>
 void iprint(vector<T> &x, char y = ' ') {
 	for (auto& ele : x) {
-		InputStream.push_back(to_string(ele));
+		InputStream.push_back(to_str(ele));
 		InputStream.push_back(y);
 	}
 }

@@ -41,12 +41,12 @@ template<typename T>
 void iprint(T* a, T* b, char y = ' ') {
 	if (a == nullptr || b == nullptr) {
 		freopen ("CON", "w", stdout);
-		cout << "iprint :: Wrong address, [Incoming empty address]. Program had Broken!" << endl;
+		cout << "iprint() :: Wrong address, [Incoming empty address]. Program had Broken!" << endl;
 		exit(4);
 	}
 	if (a > b) {
 		freopen ("CON", "w", stdout);
-		cout << "iprint :: Wrong address, [Incorrect address range]. Program had Broken!" << endl;
+		cout << "iprint() :: Wrong address, [Incorrect address range]. Program had Broken!" << endl;
 		exit(4);
 	}
 	bool flag = 0;
@@ -68,7 +68,10 @@ void iprint(T* a, T* b, char y = ' ') {
 
 template<typename T>
 void iprint(T &x, char y = ' ') {
-	string _in = to_string(x);
+	string _in = "";
+	if (is_same<T, char>::value) {
+		_in += x;
+	} else _in = to_string(x);
 	if (is_same<T, double>::value) {
 		while (_in.size() > 1 && _in.back() == '0') _in.pop_back();
 		if (_in.back() == '.') _in.pop_back();
@@ -79,7 +82,10 @@ void iprint(T &x, char y = ' ') {
 
 template<typename T>
 void oprint(T &x, char y = ' ') {
-	string _out = to_string(x);
+	string _out = "";
+	if (is_same<T, char>::value) {
+		_out += x;
+	} else _out = to_string(x);
 	if (is_same<T, double>::value) {
 		while (_out.size() > 1 && _out.back() == '0') _out.pop_back();
 		if (_out.back() == '.') _out.pop_back();
@@ -161,12 +167,8 @@ inline long long mrand(long long l, long long r) { // 生成[l, r]闭区间的�
 
 template<typename T>
 T minusGenerate(T x, double minusRatio = 0) {
-	if (minusRatio) {
-		int minusGenerator1 = mrand(1, 100);
-		if (minusGenerator1 <= minusRatio * 100) {
-			return -x;
-		}
-	}
+	int minusGenerator1 = mrand(1, 100);
+	if (minusGenerator1 <= minusRatio * 100) return -x;
 	return x;
 }
 

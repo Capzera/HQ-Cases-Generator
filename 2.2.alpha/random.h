@@ -3,10 +3,10 @@
  * Created By : Sunday 2024-05-12 23:46
  * Author     : @Capzera @2070super
  * E-mail     : 1786126188@qq.com / 1025404072@qq.com
- * Version    : V 2 . 1
+ * Version    : V 2 . 2
  * This header file helps teachers quickly and accurately derive data for topic tests.
  * Thank you for using it. If you have any questions or suggestions please refer to the documentation or contact us!
-*********************************************************************************************************************/
+ *********************************************************************************************************************/
 #ifndef RANDOM_H
 #define RANDOM_H
 
@@ -19,6 +19,9 @@ static string FileName = "";
 static string InputStream = "";
 static string OutputStream = "";
 static int caseNumber = 0;
+static uniform_int_distribution<unsigned> ui;
+static uniform_real_distribution<double> ud;
+static default_random_engine eng(time(NULL));
 
 template<typename T>
 void iprint(vector<T> &x, char y = ' ') {
@@ -65,13 +68,23 @@ void iprint(T* a, T* b, char y = ' ') {
 
 template<typename T>
 void iprint(T &x, char y = ' ') {
-	InputStream += to_string(x);
+	string _in = to_string(x);
+	if (is_same<T, double>::value) {
+		while (_in.size() > 1 && _in.back() == '0') _in.pop_back();
+		if (_in.back() == '.') _in.pop_back();
+	}
+	InputStream += _in;
 	InputStream += y;
 }
 
 template<typename T>
 void oprint(T &x, char y = ' ') {
-	OutputStream += to_string(x);
+	string _out = to_string(x);
+	if (is_same<T, double>::value) {
+		while (_out.size() > 1 && _out.back() == '0') _out.pop_back();
+		if (_out.back() == '.') _out.pop_back();
+	}
+	OutputStream += _out;
 	OutputStream += y;
 }
 
@@ -93,12 +106,12 @@ template<typename T>
 void oprint(T* a, T* b, char y = ' ') {
 	if (a == nullptr || b == nullptr) {
 		freopen ("CON", "w", stdout);
-		cout << "oprint :: Wrong address, [Incoming empty address]. Program had Broken!" << endl;
+		cout << "oprint() :: Wrong address, [Incoming empty address]. Program had Broken!" << endl;
 		exit(4);
 	}
 	if (a > b) {
 		freopen ("CON", "w", stdout);
-		cout << "oprint :: Wrong address, [Incorrect address range]. Program had Broken!" << endl;
+		cout << "oprint() :: Wrong address, [Incorrect address range]. Program had Broken!" << endl;
 		exit(4);
 	}
 	bool flag = 0;
@@ -142,8 +155,8 @@ inline long long mrand(long long l, long long r) { // 生成[l, r]闭区间的�
 		exit(100);
 		return 0;
 	}
-	long long ans = (rand() % (r - l + 1)) + l;
-	return ans;
+	ui = uniform_int_distribution<unsigned>(l, r);
+	return ui(eng);
 }
 
 template<typename T>
@@ -151,34 +164,10 @@ T minusGenerate(T x, double minusRatio = 0) {
 	if (minusRatio) {
 		int minusGenerator1 = mrand(1, 100);
 		if (minusGenerator1 <= minusRatio * 100) {
-			x = -x;
+			return -x;
 		}
 	}
 	return x;
-}
-
-long long CapzeraRand(long long l, long long r) { // 生成[l, r]闭区间的数, l为正整数或0, r 不超过 long long。
-	if (l > r || !r) return 0;
-	r--;
-	string stringNumber = to_string(r);
-	int stringNumberLen = stringNumber.size(), minLen = to_string(l).size();
-	long long ans = 0;
-	int numberLen = mrand(minLen, stringNumberLen);
-	if (numberLen == stringNumberLen) {  // 生成数长度等于目标数长度
-		long long head = stringNumber[0] - '0';
-		ans += mrand(1, head);
-		r -= head * pow(10, --numberLen);
-		if (!r && ans == head) {
-			return 1ll * ans * pow(10, numberLen);
-		}
-	}
-	while (numberLen >= 0) {
-		int generate = pow(10, min(numberLen, 3));
-		long long number = mrand(1, generate - 1);
-		ans = ans * generate + number;
-		numberLen -= 3;
-	}
-	return ans;
 }
 
 long long intRand(long long l, long long r, double minusRatio = 0) {
@@ -192,11 +181,8 @@ long long intRand(long long l, long long r, double minusRatio = 0) {
 		cout << "intRand() :: Illegal parameter, [minusRatio Out of Range, Range must belongs [0 - 1]]. Program had Broken!" << endl;
 		exit(3);
 	}
-	long long result = CapzeraRand(l, r);
-	while (result < l) {
-		result = CapzeraRand(l, r);
-	}
-	return minusGenerate(result);
+	long long result = mrand(l, r);
+	return minusGenerate(result, minusRatio);
 }
 
 long long mulIntRand(long long _l, long long _r, long long _division, double _minusRatio = 0) {
@@ -292,9 +278,15 @@ double doubleRand(int intParticialLen, int doubleParticialLen, double minusRatio
 		cout << "doubleRand() :: Illegal parameter, [minusRatio Out of Range, Range must belongs [0 - 1]]. Program had Broken!" << endl;
 		exit(3);
 	}
-	long long _SumLen = intParticialLen + doubleParticialLen;
-	long long GeneRatorDoubleNumber = intRand(pow(10, _SumLen - 1), pow(10, _SumLen) - 1);
-	double ans = 1.0 * GeneRatorDoubleNumber / pow(10, doubleParticialLen);
-	return minusGenerate(ans, minusRatio);
+	long long intPart = intRand(pow(10, intParticialLen - 1), pow(10, intParticialLen) - 1);
+	ud = uniform_real_distribution<double>(0, 1);
+	double dblPart = ud(eng);
+	string _frac = to_string(dblPart).substr(2);
+	int len = _frac.size();
+	while (doubleParticialLen < len--) {
+		_frac.pop_back();
+	}
+	dblPart = intPart + stod("0." + _frac);
+	return minusGenerate(dblPart, minusRatio);
 }
 # endif

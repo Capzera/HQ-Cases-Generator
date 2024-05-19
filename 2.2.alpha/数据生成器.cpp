@@ -6,15 +6,15 @@
 void solve() {
 //STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 //|---------------------------------------------|
-	int n = intRand(10, 20);
+	int n = intRand(40, 101);
+	iprint(n, '\n');
 	vector<int> v;
 	for (int i = 1; i <= n; i++) {
-		int c=intRand(1,20);
-		v.push_back(c);
+		double x = doubleRand(3, 4, 0.2);
+		iprint(x);
 	}
-	iprint(v);
+	
 //|---------------------------------------------|
-	filePrint();
 }
 int main() {
 // STEP 3 : Modify the cases name
@@ -26,6 +26,7 @@ int main() {
 	for (int i = minCaseNumber; i <= maxCaseNumber; i++) {
 		caseNumber = i;
 		solve();
+		filePrint();
 	}
 	return 0; 
 } 

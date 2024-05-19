@@ -7,8 +7,8 @@
  * This header file helps teachers quickly and accurately derive data for topic tests.
  * Thank you for using it. If you have any questions or suggestions please refer to the documentation or contact us!
  *********************************************************************************************************************/
-#ifndef RANDOM_H
-#define RANDOM_H
+#ifndef HQCG_H
+#define HQCG_H
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,4 +1,4 @@
-#include "random.h"
+#include "HQCG.h"
 // STEP 2 : Modify the cases number
 //|---------------------------------------------|
 	int minCaseNumber = 1, maxCaseNumber = 1; //Test Cases Number

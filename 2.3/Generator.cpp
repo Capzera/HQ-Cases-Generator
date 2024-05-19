@@ -1,16 +1,15 @@
 #include "HQCG.h"
 // STEP 2 : Modify the cases number
 //|---------------------------------------------|
-	int minCaseNumber = 1, maxCaseNumber = 1; //Test Cases Number
-int a[10001][10001];
+	int minCaseNumber = 1, maxCaseNumber = 1;   //Test Cases Number
 //|---------------------------------------------|
+
 void solve() {
 //STEP 1 : std Code copy here and replace "cin" and "cout" with generator
 //|---------------------------------------------|
-	string s=stringRand(10,1,1,1,0);
-	iprint(s);
-	oprint(s);
-	filePrint();
+	
+	
+	
 //|---------------------------------------------|
 }
 int main() {

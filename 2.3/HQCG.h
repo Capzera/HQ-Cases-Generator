@@ -23,23 +23,30 @@ static uniform_int_distribution<unsigned> ui;
 static uniform_real_distribution<double> ud;
 static default_random_engine eng(time(NULL));
 
+string to_str(string x) {
+	return x;
+}
+string to_str(char x) {
+	string ans = "";
+	ans += x;
+	return ans;
+}
+template<typename T>
+string to_str(T &x) {
+	return to_str(x);
+}
+
 template<typename T>
 void iprint(vector<T> &x, char y = ' ') {
-	bool flag = is_same<T, char>::value;
-	size_t n = x.size();
-	for (size_t i = 0; i < n; i++) {
-		if (flag == 0) {
-			InputStream += to_string(x[i]);
-		} else {
-			InputStream.push_back(x[i]);
-		}
+	for (auto& ele : x) {
+		InputStream.push_back(to_string(ele));
 		InputStream.push_back(y);
 	}
 }
 
 template<typename T>
 void iprint(T* a, T* b, char y = ' ') {
-	if (a == nullptr || b == nullptr) {
+	if (!a || !b) {
 		freopen ("CON", "w", stdout);
 		cout << "iprint() :: Wrong address, [Incoming empty address]. Program had Broken!" << endl;
 		exit(4);
@@ -49,28 +56,16 @@ void iprint(T* a, T* b, char y = ' ') {
 		cout << "iprint() :: Wrong address, [Incorrect address range]. Program had Broken!" << endl;
 		exit(4);
 	}
-	bool flag = 0;
-	string s = typeid(a).name();
-	if (s == "Pc") {
-		flag = 1;
-	}
 	auto it = a;
 	while (it != b) {
-		if (flag == 0) {
-			InputStream += to_string(*it);
-		} else {
-			InputStream.push_back(*it);
-		}
+		InputStream += to_str(*it);
 		it++;
 		InputStream.push_back(y);
 	}
 }
 template<typename T>
 void iprint(T x, char y = ' ') {
-	string _in = "";
-	if (is_same<T, char>::value||is_same<T,string>::value) {
-		_in += x;
-	}else _in = to_string(x);
+	string _in = to_str(x);
 	if (is_same<T, double>::value) {
 		while (_in.size() > 1 && _in.back() == '0') _in.pop_back();
 		if (_in.back() == '.') _in.pop_back();
@@ -81,10 +76,7 @@ void iprint(T x, char y = ' ') {
 
 template<typename T>
 void oprint(T x, char y = ' ') {
-	string _out = "";
-	if (is_same<T, char>::value||is_same<T,string>::value) {
-		_out += x;
-	} else _out = to_string(x);
+	string _out = to_str(x);
 	if (is_same<T, double>::value) {
 		while (_out.size() > 1 && _out.back() == '0') _out.pop_back();
 		if (_out.back() == '.') _out.pop_back();
@@ -95,14 +87,8 @@ void oprint(T x, char y = ' ') {
 
 template<typename T>
 void oprint(vector<T> &x, char y = ' ') {
-	bool flag = is_same<T, char>::value;
-	size_t n = x.size();
-	for (size_t i = 0; i < n; i++) {
-		if (flag == 0) {
-			OutputStream += to_string(x[i]);
-		} else {
-			OutputStream.push_back(x[i]);
-		}
+	for (auto& ele : x) {
+		OutputStream.push_back(x[i]);
 		OutputStream.push_back(y);
 	}
 }
@@ -119,29 +105,20 @@ void oprint(T* a, T* b, char y = ' ') {
 		cout << "oprint() :: Wrong address, [Incorrect address range]. Program had Broken!" << endl;
 		exit(4);
 	}
-	bool flag = 0;
-	string s = typeid(a).name();
-	if (s == "Pc") {
-		flag = 1;
-	}
 	auto it = a;
 	while (it != b) {
-		if (flag == 0) {
-			OutputStream += to_string(*it);
-		} else {
-			OutputStream.push_back(*it);
-		}
+		OutputStream += to_str(*it);
 		it++;
 		OutputStream.push_back(y);
 	}
 }
 
 void filePrint() {
-	string InputFileName = FileName + to_string(caseNumber) + "." + InputFileSuffix;
+	string InputFileName = FileName + to_str(caseNumber) + "." + InputFileSuffix;
 	freopen(InputFileName.c_str(), "w", stdout);
 	cout << InputStream;
 	fclose(stdout);
-	string OutputFileName = FileName + to_string(caseNumber) + "." + OutputFileSuffix;
+	string OutputFileName = FileName + to_str(caseNumber) + "." + OutputFileSuffix;
 	freopen(OutputFileName.c_str(), "w", stdout);
 	cout << OutputStream;
 	fclose(stdout);
@@ -150,7 +127,6 @@ void filePrint() {
 
 void init(int l, int r, string fileName = "") {
 	FileName = fileName;
-	srand(time(NULL));
 }
 
 inline long long mrand(long long l, long long r) { // 生成[l, r]闭区间的数, l为正整数或0, r不超过10000。
@@ -282,7 +258,7 @@ double doubleRand(int intParticialLen, int doubleParticialLen, double minusRatio
 	long long intPart = intRand(pow(10, intParticialLen - 1), pow(10, intParticialLen) - 1);
 	ud = uniform_real_distribution<double>(0, 1);
 	double dblPart = ud(eng);
-	string _frac = to_string(dblPart).substr(2);
+	string _frac = to_str(dblPart).substr(2);
 	int len = _frac.size();
 	while (doubleParticialLen < len--) {
 		_frac.pop_back();

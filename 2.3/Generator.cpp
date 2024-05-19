@@ -15,13 +15,14 @@ void solve() {
 int main() {
 // STEP 3 : Modify the cases name
 //|---------------------------------------------|
-	init(minCaseNumber, maxCaseNumber, "TEST");
+	init(minCaseNumber, maxCaseNumber, "test");
 	InputFileSuffix = "in";
 	OutputFileSuffix = "out";
 //|---------------------------------------------|
 	for (int i = minCaseNumber; i <= maxCaseNumber; i++) {
 		caseNumber = i;
 		solve();
+		filePrint();
 	}
 	return 0; 
 } 

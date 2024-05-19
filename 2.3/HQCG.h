@@ -26,11 +26,13 @@ static default_random_engine eng(time(NULL));
 string to_str(string x) {
 	return x;
 }
+
 string to_str(char x) {
 	string ans = "";
 	ans += x;
 	return ans;
 }
+
 template<typename T>
 string to_str(T &x) {
 	return to_string(x);

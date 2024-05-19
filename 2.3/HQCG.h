@@ -3,7 +3,7 @@
  * Created By : Sunday 2024-05-12 23:46
  * Author     : @Capzera @2070super
  * E-mail     : 1786126188@qq.com / 1025404072@qq.com
- * Version    : V 2 . 2
+ * Version    : V 2 . 3
  * This header file helps teachers quickly and accurately derive data for topic tests.
  * Thank you for using it. If you have any questions or suggestions please refer to the documentation or contact us!
  *********************************************************************************************************************/
@@ -38,10 +38,25 @@ string to_str(T &x) {
 	return to_string(x);
 }
 
+void iprint() {
+	InputStream += '\n';
+}
+
+void oprint() {
+	OutputStream += '\n';
+}
+
 template<typename T>
 void iprint(vector<T> &x, char y = ' ') {
 	for (auto& ele : x) {
 		InputStream += to_str(ele) + y;
+	}
+}
+
+template<typename T>
+void oprint(vector<T> &x, char y = ' ') {
+	for (auto& ele : x) {
+		OutputStream += to_str(ele) + y;
 	}
 }
 
@@ -62,6 +77,25 @@ void iprint(T* a, T* b, char y = ' ') {
 		InputStream += to_str(*it++) + y;
 	}
 }
+
+template<typename T>
+void oprint(T* a, T* b, char y = ' ') {
+	if (a == nullptr || b == nullptr) {
+		freopen ("CON", "w", stdout);
+		cout << "oprint() :: Wrong address, [Incoming empty address]. Program had Broken!" << endl;
+		exit(4);
+	}
+	if (a > b) {
+		freopen ("CON", "w", stdout);
+		cout << "oprint() :: Wrong address, [Incorrect address range]. Program had Broken!" << endl;
+		exit(4);
+	}
+	auto it = a;
+	while (it != b) {
+		OutputStream += to_str(*it++) + y;
+	}
+}
+
 template<typename T>
 void iprint(T x, char y = ' ') {
 	string _in = to_str(x);
@@ -80,31 +114,6 @@ void oprint(T x, char y = ' ') {
 		if (_out.back() == '.') _out.pop_back();
 	}
 	OutputStream += _out + y;
-}
-
-template<typename T>
-void oprint(vector<T> &x, char y = ' ') {
-	for (auto& ele : x) {
-		OutputStream += to_str(ele) + y;
-	}
-}
-
-template<typename T>
-void oprint(T* a, T* b, char y = ' ') {
-	if (a == nullptr || b == nullptr) {
-		freopen ("CON", "w", stdout);
-		cout << "oprint() :: Wrong address, [Incoming empty address]. Program had Broken!" << endl;
-		exit(4);
-	}
-	if (a > b) {
-		freopen ("CON", "w", stdout);
-		cout << "oprint() :: Wrong address, [Incorrect address range]. Program had Broken!" << endl;
-		exit(4);
-	}
-	auto it = a;
-	while (it != b) {
-		OutputStream += to_str(*it++) + y;
-	}
 }
 
 void filePrint() {

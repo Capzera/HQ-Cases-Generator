@@ -39,8 +39,7 @@ string to_str(T &x) {
 template<typename T>
 void iprint(vector<T> &x, char y = ' ') {
 	for (auto& ele : x) {
-		InputStream.push_back(to_str(ele));
-		InputStream.push_back(y);
+		InputStream += to_str(ele) + y;
 	}
 }
 
@@ -58,9 +57,7 @@ void iprint(T* a, T* b, char y = ' ') {
 	}
 	auto it = a;
 	while (it != b) {
-		InputStream += to_str(*it);
-		it++;
-		InputStream.push_back(y);
+		InputStream += to_str(*it++) + y;
 	}
 }
 template<typename T>
@@ -70,8 +67,7 @@ void iprint(T x, char y = ' ') {
 		while (_in.size() > 1 && _in.back() == '0') _in.pop_back();
 		if (_in.back() == '.') _in.pop_back();
 	}
-	InputStream += _in;
-	InputStream += y;
+	InputStream += _in + y;
 }
 
 template<typename T>
@@ -81,15 +77,13 @@ void oprint(T x, char y = ' ') {
 		while (_out.size() > 1 && _out.back() == '0') _out.pop_back();
 		if (_out.back() == '.') _out.pop_back();
 	}
-	OutputStream += _out;
-	OutputStream += y;
+	OutputStream += _out + y;
 }
 
 template<typename T>
 void oprint(vector<T> &x, char y = ' ') {
 	for (auto& ele : x) {
-		OutputStream.push_back(x[i]);
-		OutputStream.push_back(y);
+		OutputStream += to_str(ele) + y;
 	}
 }
 
@@ -107,9 +101,7 @@ void oprint(T* a, T* b, char y = ' ') {
 	}
 	auto it = a;
 	while (it != b) {
-		OutputStream += to_str(*it);
-		it++;
-		OutputStream.push_back(y);
+		OutputStream += to_str(*it++) + y;
 	}
 }
 
